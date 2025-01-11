@@ -2,15 +2,62 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Dice1, Box, Coins, Target } from "lucide-react";
 import { GamesSidebar } from "@/components/layout/GamesSidebar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const Home = () => {
+  const slides = [
+    {
+      title: "Welcome Bonus",
+      description: "Get 100% bonus on your first deposit",
+      image: "/placeholder.svg",
+    },
+    {
+      title: "Weekly Tournaments",
+      description: "Join our weekly tournaments and win big prizes",
+      image: "/placeholder.svg",
+    },
+    {
+      title: "VIP Program",
+      description: "Become a VIP member and get exclusive benefits",
+      image: "/placeholder.svg",
+    },
+  ];
+
   return (
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Main Content */}
       <div className="flex-1 space-y-8">
         {/* Slideshow Section */}
-        <section className="glass-panel p-4 h-[300px] flex items-center justify-center">
-          <p className="text-muted-foreground">Slideshow will be implemented here</p>
+        <section className="glass-panel p-4">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {slides.map((slide, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <div className="flex aspect-video items-center justify-center p-6 relative overflow-hidden rounded-xl">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white p-6">
+                        <h3 className="text-2xl font-bold mb-2">{slide.title}</h3>
+                        <p className="text-center">{slide.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </section>
 
         {/* Stats Section */}
