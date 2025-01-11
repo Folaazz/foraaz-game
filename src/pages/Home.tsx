@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Dice, Box, Coins, Target } from "lucide-react";
+import { ArrowRight, Dice1, Box, Coins, Target } from "lucide-react";
 
 export const Home = () => {
   const games = [
@@ -13,7 +13,7 @@ export const Home = () => {
     {
       title: "Dice",
       description: "Roll the dice and test your luck!",
-      icon: Dice,
+      icon: Dice1,
       path: "/games/dice",
     },
     {
