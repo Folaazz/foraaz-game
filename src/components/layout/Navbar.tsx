@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Moon, Sun, User } from "lucide-react";
+import { Menu, X, Moon, Sun, User, Gift, Grid, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  // Temporary mock data - replace with actual auth state later
+  const user = {
+    name: "John Doe",
+    balance: 1000
+  };
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleTheme = () => setIsDark(!isDark);
@@ -21,17 +26,36 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
-              <Link to="/games/plinko" className="nav-item">Plinko</Link>
-              <Link to="/games/dice" className="nav-item">Dice</Link>
-              <Link to="/games/roulette" className="nav-item">Roulette</Link>
-              <Link to="/games/case" className="nav-item">Case</Link>
-              <Link to="/games/coin-flip" className="nav-item">Coin Flip</Link>
+          <div className="hidden md:flex items-center space-x-8">
+            <Link to="/bonuses" className="nav-item flex items-center gap-2">
+              <Gift className="w-4 h-4" />
+              <span>Bonuses</span>
+            </Link>
+            <Link to="/divisions" className="nav-item flex items-center gap-2">
+              <Grid className="w-4 h-4" />
+              <span>Divisions</span>
+            </Link>
+            <div className="nav-item flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              <span>Online: 1,234</span>
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
+            {user ? (
+              <>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm font-medium">{user.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium">${user.balance}</span>
+                    <Button variant="outline" size="sm">Deposit</Button>
+                    <Button variant="outline" size="sm">Withdraw</Button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Button variant="default">Sign In</Button>
+            )}
             <Button
               variant="ghost"
               size="icon"
@@ -65,11 +89,19 @@ export const Navbar = () => {
       {isOpen && (
         <div className="md:hidden glass-panel animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link to="/games/plinko" className="nav-item block">Plinko</Link>
-            <Link to="/games/dice" className="nav-item block">Dice</Link>
-            <Link to="/games/roulette" className="nav-item block">Roulette</Link>
-            <Link to="/games/case" className="nav-item block">Case</Link>
-            <Link to="/games/coin-flip" className="nav-item block">Coin Flip</Link>
+            <Link to="/bonuses" className="nav-item block">Bonuses</Link>
+            <Link to="/divisions" className="nav-item block">Divisions</Link>
+            <div className="nav-item block">Online: 1,234</div>
+            {user && (
+              <div className="px-2 py-3 border-t border-white/10">
+                <div className="text-sm font-medium">{user.name}</div>
+                <div className="mt-2 flex flex-col gap-2">
+                  <div className="text-sm">Balance: ${user.balance}</div>
+                  <Button variant="outline" size="sm" className="w-full">Deposit</Button>
+                  <Button variant="outline" size="sm" className="w-full">Withdraw</Button>
+                </div>
+              </div>
+            )}
             <Link to="/profile" className="nav-item block">Profile</Link>
           </div>
         </div>
