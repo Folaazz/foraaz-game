@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useTheme } from "./ThemeContext"; // Импортируем хук useTheme
 
 const games = [
   { title: "Plinko", path: "/games/plinko" },
@@ -13,13 +14,32 @@ const games = [
 
 export const GamesSidebar = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const { isDark } = useTheme(); // Получаем текущую тему
 
-  const filteredGames = games.filter(game =>
+  const filteredGames = games.filter((game) =>
     game.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Эффект для изменения темы
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.style.setProperty("--background-color", "#283044");
+      root.style.setProperty("--text-color", "#ebf5ee"); // Белый текст
+      root.style.setProperty("--border-color", "#ebf5ee");
+    } else {
+      root.style.setProperty("--background-color", "#ebf5ee"); // Светлый фон
+      root.style.setProperty("--text-color", "#283044"); // Черный текст
+      root.style.setProperty("--border-color", "#283044");
+    }
+  }, [isDark]);
+
   return (
-    <aside className="w-full lg:w-1/5 glass-panel p-4 lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)]">
+    <aside className="w-full lg:w-1/5 glass-panel p-4 lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)]" style={{
+      backgroundColor: "var(--background-color)",
+      color: "var(--text-color)",
+      border: "var(--border-color) 1px solid",
+    }}>
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input

@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Dice1, Box, Coins, Target } from "lucide-react";
 import { GamesSidebar } from "@/components/layout/GamesSidebar";
+import { useTheme } from "@/components/layout/ThemeContext";
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 export const Home = () => {
+  const { isDark } = useTheme(); // Получаем текущую тему
   const slides = [
     {
       title: "Welcome Bonus",
@@ -29,8 +32,23 @@ export const Home = () => {
     },
   ];
 
+    // Эффект для изменения темы
+    useEffect(() => {
+      const root = document.documentElement;
+      if (isDark) {
+        root.style.setProperty("--background-color", "#040f16"); // Темный фон
+        root.style.setProperty("--text-color", "#fbfbff"); // Белый текст
+      } else {
+        root.style.setProperty("--background-color", "#fbfbff"); // Светлый фон
+        root.style.setProperty("--text-color", "#040f16"); // Черный текст
+      }
+    }, [isDark]);
+
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
+    <div className="flex flex-col lg:flex-row gap-6" style={{
+      backgroundColor: "var(--background-color)",
+      color: "var(--text-color)",
+    }}>
       {/* Main Content */}
       <div className="flex-1 space-y-8">
         {/* Slideshow Section */}
@@ -55,8 +73,10 @@ export const Home = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious 
+            style={{ left: "20px" }}/>
+            <CarouselNext 
+            style={{ right: "20px" }}/>
           </Carousel>
         </section>
 

@@ -1,86 +1,86 @@
-# Project Structure Documentation
+# Документация структуры проекта
 
-## Overview
-This document explains the structure of the GameHub project and how to make modifications to different components.
+## Обзор
+Этот документ объясняет структуру проекта GameHub и как вносить изменения в различные компоненты.
 
-## Key Components
+## Ключевые компоненты
 
-### Navbar (`src/components/layout/Navbar.tsx`)
-- Contains the main navigation header
-- Includes user information, balance, deposit/withdraw buttons
-- Features links to Bonuses, Divisions, and Online Users count
-- Has a theme toggle button
-- Fully responsive with mobile menu
+### Навигационная панель (`src/components/layout/Navbar.tsx`)
+- Содержит основную навигационную панель
+- Включает информацию о пользователе, баланс, кнопки депозита/снятия
+- Предоставляет ссылки на бонусы, подразделения и количество онлайн-пользователей
+- Имеет кнопку переключения темы
+- Полностью адаптивная с мобильным меню
 
-To modify:
-- User information: Update the user object in the component
-- Navigation links: Modify the links in both desktop and mobile sections
-- Styling: Adjust the Tailwind classes for visual changes
+Чтобы изменить:
+- Информация о пользователе: Обновите объект пользователя в компоненте
+- Навигационные ссылки: Измените ссылки в обоих секциях для настольных и мобильных устройств
+- Стиль: Измените классы Tailwind для визуальных изменений
 
-### Games Sidebar (`src/components/layout/GamesSidebar.tsx`)
-- Reusable sidebar component for game navigation
-- Includes search functionality
-- Responsive design that adapts to different screen sizes
+### Сайдбар игр (`src/components/layout/GamesSidebar.tsx`)
+- Многоразовый компонент сайдбара для навигации по играм
+- Включает функцию поиска
+- Адаптивный дизайн, который подстраивается под разные размеры экрана
 
-To modify:
-- Game list: Update the `games` array in the component
-- Search behavior: Modify the filtering logic
-- Layout: Adjust the Tailwind classes for sizing and positioning
+Чтобы изменить:
+- Список игр: Обновите массив `games` в компоненте
+- Поведение поиска: Измените логика фильтрации
+- Разметка: Измените классы Tailwind для размеров и позиционирования
 
-### Pages
+### Страницы
 
-#### Home (`src/pages/Home.tsx`)
-- Features a slideshow section (to be implemented)
-- Displays platform statistics
-- Shows featured games
-- Includes the games sidebar
+#### Домашняя страница (`src/pages/Home.tsx`)
+- Включает секцию слайдшоу (для реализации)
+- Отображает статистику платформы
+- Показывает рекомендуемые игры
+- Включает сайдбар игр
 
-To modify:
-- Slideshow: Implement in the designated section
-- Stats: Update the numbers in the statistics section
-- Featured games: Modify the games array in the grid section
+Чтобы изменить:
+- Слайдшоу: Реализуйте в назначенной секции
+- Статистика: Обновите цифры в секции статистики
+- Рекомендуемые игры: Измените массив игр в секции сетки
 
-#### Game Pages (e.g., `src/pages/games/Plinko.tsx`)
-- All game pages follow the same layout structure
-- Include the games sidebar
-- Maintain consistent header and footer
+#### Страницы игр (например, `src/pages/games/Plinko.tsx`)
+- Все страницы игр следуют одной и той же структуре макета
+- Включают сайдбар игр
+- Поддерживают постоянный заголовок и футер
 
-To modify:
-- Game content: Update the main content area
-- Layout: Adjust the flex container classes for different layouts
+Чтобы изменить:
+- Содержание игры: Обновите основную область содержания
+- Разметка: Измените классы контейнера и сетки для разных макетов
 
-#### Profile (`src/pages/Profile.tsx`)
-- Displays user information and settings
-- Does not include the games sidebar
+#### Профиль (`src/pages/Profile.tsx`)
+- Отображает информацию о пользователе и настройки
+- Не включает сайдбар игр
 
-To modify:
-- User information: Update the profile content
-- Layout: Modify the container and grid classes
+Чтобы изменить:
+- Информация о пользователе: Обновите содержание профиля
+- Разметка: Измените классы контейнера и сетки
 
-## Responsive Design
-- All components use Tailwind's responsive classes
-- Mobile-first approach with breakpoints:
+## Адаптивный дизайн
+- Все компоненты используют адаптивные классы Tailwind
+- Подход "сначала мобильные устройства" с точками останова:
   - sm: 640px
   - md: 768px
   - lg: 1024px
   - xl: 1280px
   - 2xl: 1536px
 
-## Theme Customization
-- Dark/light mode toggle in the navbar
-- Theme colors defined in `src/index.css`
-- Uses CSS variables for consistent theming
+## Настройка темы
+- Переключатель темы светлая/темная в навигационной панели
+- Цвета темы определены в `src/index.css`
+- Использует переменные CSS для последовательной темизации
 
-## Adding New Features
-1. Create new components in appropriate directories
-2. Update routing in `App.tsx` if needed
-3. Maintain consistent styling using Tailwind classes
-4. Ensure responsive design across all screen sizes
-5. Test on multiple devices and browsers
+## Добавление новых функций
+1. Создайте новые компоненты в соответствующих директориях
+2. Обновите маршрутизацию в `App.tsx`, если необходимо
+3. Поддерживайте последовательный стиль с помощью классов Tailwind
+4. Обеспечьте адаптивный дизайн на всех размерах экрана
+5. Тестируйте на нескольких устройствах и браузерах
 
-## Best Practices
-- Keep components small and focused
-- Reuse components when possible
-- Maintain consistent naming conventions
-- Follow the existing responsive design patterns
-- Use Tailwind's utility classes for styling
+## Лучшие практики
+- Держите компоненты небольшими и сосредоточенными
+- Повторно используйте компоненты, когда это возможно
+- Поддерживайте последовательные соглашения об именах
+- Следуйте существующим шаблонам адаптивного дизайна
+- Используйте утилитарные классы Tailwind для стилей

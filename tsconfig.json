@@ -5,15 +5,18 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
-  }
+    "target": "ES6",                          // Указывает версию JavaScript, в которую будет компилироваться код
+    "module": "commonjs",                     // Указывает систему модулей, используемую в Node.js
+    "strict": true,                           // Включает все строгие проверки типов
+    "esModuleInterop": true,                  // Позволяет использовать синтаксис импорта ES6
+    "skipLibCheck": true,                     // Пропускает проверку типов в файлах .d.ts
+    "forceConsistentCasingInFileNames": true, // Обеспечивает согласованность в именах файлов
+    "outDir": "./dist",                       // Указывает папку для выходных файлов
+    "rootDir": "./src",                       // Указывает корневую папку исходных файлов
+    "typeRoots": ["./node_modules/@types"],   // Указывает папку для типов
+    "lib": ["ES6", "DOM"]                     // Указывает библиотеки, которые будут включены
+  },
+  "include": ["src/**/*"],                    // Указывает, какие файлы включать в проект
+  "exclude": ["node_modules", "**/*.spec.ts"] // Указывает, какие файлы исключать из проекта
 }
+
