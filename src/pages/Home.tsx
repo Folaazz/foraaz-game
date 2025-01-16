@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Dice1, Box, Coins, Target } from "lucide-react";
 import { GamesSidebar } from "@/components/layout/GamesSidebar";
-import { useTheme } from "@/components/layout/ThemeContext";
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +10,6 @@ import {
 } from "@/components/ui/carousel";
 
 export const Home = () => {
-  const { isDark } = useTheme(); // Получаем текущую тему
   const slides = [
     {
       title: "Welcome Bonus",
@@ -32,23 +28,8 @@ export const Home = () => {
     },
   ];
 
-    // Эффект для изменения темы
-    useEffect(() => {
-      const root = document.documentElement;
-      if (isDark) {
-        root.style.setProperty("--background-color", "#040f16"); // Темный фон
-        root.style.setProperty("--text-color", "#fbfbff"); // Белый текст
-      } else {
-        root.style.setProperty("--background-color", "#fbfbff"); // Светлый фон
-        root.style.setProperty("--text-color", "#040f16"); // Черный текст
-      }
-    }, [isDark]);
-
   return (
-    <div className="flex flex-col lg:flex-row gap-6" style={{
-      backgroundColor: "var(--background-color)",
-      color: "var(--text-color)",
-    }}>
+    <div className="flex flex-col lg:flex-row gap-6">
       {/* Main Content */}
       <div className="flex-1 space-y-8">
         {/* Slideshow Section */}
@@ -73,87 +54,55 @@ export const Home = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious 
-            style={{ left: "20px" }}/>
-            <CarouselNext 
-            style={{ right: "20px" }}/>
+            <CarouselPrevious />
+            <CarouselNext />
           </Carousel>
         </section>
 
         {/* Stats Section */}
-        <section className="glass-panel p-8 space-y-6">
-          <h2 className="text-2xl font-bold text-center">Platform Statistics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary">$1M+</div>
-              <div className="text-sm text-muted-foreground">Total Withdrawals</div>
+        <section className="glass-panel p-6">
+          <h2 className="text-2xl font-bold mb-6">Platform Statistics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-lg bg-primary/10">
+              <Dice1 className="w-8 h-8 mb-2" />
+              <p className="text-sm text-muted-foreground">Total Games</p>
+              <p className="text-2xl font-bold">10,000+</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary">10K+</div>
-              <div className="text-sm text-muted-foreground">Active Players</div>
+            <div className="p-4 rounded-lg bg-primary/10">
+              <Box className="w-8 h-8 mb-2" />
+              <p className="text-sm text-muted-foreground">Cases Opened</p>
+              <p className="text-2xl font-bold">5,000+</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary">100K+</div>
-              <div className="text-sm text-muted-foreground">Games Played</div>
+            <div className="p-4 rounded-lg bg-primary/10">
+              <Coins className="w-8 h-8 mb-2" />
+              <p className="text-sm text-muted-foreground">Total Winnings</p>
+              <p className="text-2xl font-bold">$1M+</p>
+            </div>
+            <div className="p-4 rounded-lg bg-primary/10">
+              <Target className="w-8 h-8 mb-2" />
+              <p className="text-sm text-muted-foreground">Active Players</p>
+              <p className="text-2xl font-bold">1,000+</p>
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section className="glass-panel p-8 space-y-6">
-          <h2 className="text-2xl font-bold text-center">About GameHub</h2>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto">
-            GameHub is your premier destination for online gaming entertainment.
-            We offer a wide variety of games, instant withdrawals, and a secure
-            gaming environment.
-          </p>
-        </section>
-
-        {/* Featured Games Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Plinko",
-              description: "Drop the ball and watch it bounce!",
-              icon: Target,
-              path: "/games/plinko",
-            },
-            {
-              title: "Dice",
-              description: "Roll the dice and test your luck!",
-              icon: Dice1,
-              path: "/games/dice",
-            },
-            {
-              title: "Case Opening",
-              description: "Open cases and win amazing prizes!",
-              icon: Box,
-              path: "/games/case",
-            },
-          ].map((game) => (
-            <motion.div
-              key={game.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Link to={game.path} className="block">
-                <div className="game-card group">
-                  <game.icon className="w-12 h-12 text-primary mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{game.title}</h3>
-                  <p className="text-muted-foreground mb-4">{game.description}</p>
-                  <div className="flex items-center text-primary">
-                    Play Now
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+        <section className="glass-panel p-6">
+          <h2 className="text-2xl font-bold mb-6">About Our Platform</h2>
+          <div className="prose prose-invert max-w-none">
+            <p>Welcome to our gaming platform! We offer a variety of exciting games and opportunities to win big prizes.</p>
+            <p>Our platform features:</p>
+            <ul>
+              <li>Secure and fair gameplay</li>
+              <li>Instant withdrawals</li>
+              <li>24/7 customer support</li>
+              <li>Regular tournaments and events</li>
+            </ul>
+          </div>
         </section>
       </div>
 
-      {/* Games Sidebar */}
+      {/* Sidebar */}
       <GamesSidebar />
     </div>
   );
