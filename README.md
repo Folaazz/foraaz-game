@@ -34,8 +34,7 @@ npm i
 npm install axios@latest
 npm install jose@latest
 npm install safe-buffer@latest
-npm install mysql2
-npm install --save-dev @types/mysql
+npm install express mysql2 bcrypt jsonwebtoken
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
